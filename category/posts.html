@@ -21,17 +21,17 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sterlingking1990.github.io/first-post.html">First Post</a></h1>
+                    <h1 class="entry-title"><a href="https://sterlingking1990.github.io/second-post.html">Second Post: Thanksgiving Analysis</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2016-06-08T20:00:00-07:00">
-                Published: Wed 08 June 2016
+        <abbr class="published" title="2018-01-28T20:00:00+01:00">
+                Published: Sun 28 January 2018
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://sterlingking1990.github.io/author/izundu-kingsley.html">IZUNDU KINGSLEY</a>
+                By                         <a class="url fn" href="https://sterlingking1990.github.io/author/izundu-kingsley.html">Izundu Kingsley</a>
         </address>
 <p>In <a href="https://sterlingking1990.github.io/category/posts.html">posts</a>.</p>
-<p>tags: <a href="https://sterlingking1990.github.io/tag/python-firsts.html">python firsts</a> </p>
+<p>tags: <a href="https://sterlingking1990.github.io/tag/python-second-thanksgiving.html">python second thanksgiving</a> </p>
 </footer><!-- /.post-info --><style type="text/css">/*!
 *
 * IPython notebook
@@ -1008,19 +1008,70 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="!-First-post!">! First post!<a class="anchor-link" href="#!-First-post!">&#182;</a></h1><p>This will be the first post in our new Pelican blog! You can add any code or markdown cells to this Jupyter notebook, and they will be rendered on your blog.</p>
+<h1 id="SECOND-POST">SECOND POST<a class="anchor-link" href="#SECOND-POST">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is the second post in the series</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#this is a thanksgiving data analaysis program, a step to data science</span>
+<span class="c1">#in this program we want to answer the following question</span>
+<span class="c1">#what cooking style can be recommended for a particular choice of food for thanksgiving</span>
+<span class="c1">#what kind of food are people most likely to eat during thanksgiving and how many eat each kind</span>
+<span class="c1">#what proportion of people celebrate thanksgiving</span>
 
-<span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">thanksgiving</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;thanks.csv&quot;</span><span class="p">,</span><span class="n">engine</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span> <span class="c1">#use engine=python if encoding error</span>
+<span class="n">i_celebrate</span><span class="o">=</span><span class="n">thanksgiving</span><span class="p">[</span><span class="n">thanksgiving</span><span class="p">[</span><span class="s2">&quot;Do you celebrate Thanksgiving?&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Yes&quot;</span><span class="p">]</span>
+<span class="n">i_dont_celebrate</span><span class="o">=</span><span class="n">thanksgiving</span><span class="p">[</span><span class="n">thanksgiving</span><span class="p">[</span><span class="s2">&quot;Do you celebrate Thanksgiving?&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;No&quot;</span><span class="p">]</span>
+<span class="n">total_who_celebrate</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i_celebrate</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">i_dont_celebrate</span><span class="p">))</span>
+<span class="n">percentage_who_dont_celebrate</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">i_dont_celebrate</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">total_who_celebrate</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proportion of those that dont celebrate is : &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i_dont_celebrate</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; out of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total_who_celebrate</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;persons do not celebrate thanksgiving&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hence &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">percentage_who_dont_celebrate</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">% d</span><span class="s2">o not celebrate thanksgiving&quot;</span> <span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1 out of every &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i_celebrate</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">i_dont_celebrate</span><span class="p">)))</span> <span class="o">+</span> <span class="s2">&quot; persons are ungrateful&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Question 3 has been answered----&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------****************************question 2************************************-----------------------&quot;</span><span class="p">)</span>
+
+<span class="n">food_choices</span><span class="o">=</span><span class="n">thanksgiving</span><span class="p">[</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">food_choices</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">food_choices</span><span class="p">)</span>
+<span class="n">food_people</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">food_styles</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">food_choices</span><span class="p">:</span>
+    <span class="n">this_c_df</span><span class="o">=</span><span class="n">thanksgiving</span><span class="p">[</span><span class="n">thanksgiving</span><span class="p">[</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">styles_cook</span><span class="o">=</span><span class="n">this_c_df</span><span class="p">[</span><span class="s2">&quot;How is the main dish typically cooked?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">styles_cook</span><span class="p">:</span>
+        <span class="n">food_style</span><span class="o">=</span><span class="n">this_c_df</span><span class="p">[</span><span class="n">this_c_df</span><span class="p">[</span><span class="s2">&quot;How is the main dish typically cooked?&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">style</span><span class="p">]</span>
+        <span class="n">num_who_use_this_style</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">food_style</span><span class="p">)</span>
+        <span class="n">food_styles</span><span class="p">[</span><span class="n">c</span> <span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span> <span class="n">style</span><span class="p">]</span><span class="o">=</span><span class="n">num_who_use_this_style</span>
+    <span class="n">num_eat_c</span><span class="o">=</span><span class="n">this_c_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">food_people</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">num_eat_c</span>
+
+<span class="c1">#countlist=[]</span>
+<span class="c1">#for key in food_people:</span>
+<span class="c1">#    countlist.append(food_people[key])</span>
+<span class="c1">#countlist.remove(859)</span>
+<span class="c1">#print(countlist)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;here is the styles for cooking &quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">food_styles</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span>  <span class="o">+</span><span class="s2">&quot; --- &quot;</span><span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">food_styles</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 
 </div>
@@ -1030,135 +1081,1091 @@ h6:hover .anchor-link {
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[1]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>96</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[2]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(array([ 2.,  1.,  1.,  0.,  2.,  0.,  1.,  0.,  0.,  2.]),
- array([  1. ,   1.9,   2.8,   3.7,   4.6,   5.5,   6.4,   7.3,   8.2,
-          9.1,  10. ]),
- &lt;a list of 10 Patch objects&gt;)</pre>
-</div>
-
-</div>
 
 <div class="output_area">
 
 <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Proportion of those that dont celebrate is : 
+78 out of 1058persons do not celebrate thanksgiving
+Hence 7% do not celebrate thanksgiving
+1 out of every 12 persons are ungrateful
+---Question 3 has been answered----
+------------****************************question 2************************************-----------------------
+here is the styles for cooking 
+Ham/Pork-Baked --- 22
+Chicken-Fried --- 2
+Other (please specify)-Baked --- 16
+Tofurkey-I don&#39;t know --- 1
+Turkey-Other (please specify) --- 34
+Turkey-Fried --- 41
+Other (please specify)-Roasted --- 5
+Roast beef-Baked --- 3
+Tofurkey-Roasted --- 4
+I don&#39;t know-Roasted --- 1
+I don&#39;t know-I don&#39;t know --- 3
+Roast beef-Other (please specify) --- 1
+Chicken-Baked --- 4
+Chicken-Other (please specify) --- 2
+Other (please specify)-Other (please specify) --- 12
+Chicken-Roasted --- 4
+Turkey-Roasted --- 351
+Ham/Pork-I don&#39;t know --- 1
+Turkey-Baked --- 422
+Turkey-I don&#39;t know --- 11
+Tofurkey-Other (please specify) --- 1
+I don&#39;t know-Fried --- 1
+Ham/Pork-Roasted --- 5
+Ham/Pork-Other (please specify) --- 1
+Tofurkey-Baked --- 14
+Roast beef-Roasted --- 5
+Other (please specify)-Fried --- 1
+Roast beef-Fried --- 2
+Turducken-Roasted --- 3
+Other (please specify)-I don&#39;t know --- 1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;thanksgiving.csv&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;Latin-1&quot;</span><span class="p">)</span>
+<span class="n">cat_yes_no</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Do you celebrate Thanksgiving?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">main_dish</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">]</span>
+<span class="n">main_dish_count</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cat_yes_no</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">main_dish_count</span><span class="p">)</span>
+<span class="n">main_dish_tofurkey</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">main_dish</span><span class="o">==</span><span class="s2">&quot;Tofurkey&quot;</span><span class="p">]</span>
+<span class="n">main_dish_tofurkey_yes_no</span><span class="o">=</span><span class="n">main_dish_tofurkey</span><span class="p">[</span><span class="s2">&quot;Do you typically have gravy?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">main_dish_tofurkey_yes_no</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-+T9o7WVSweQ55gAAAABJRU5ErkJggg==
-">
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Yes    980
+No      78
+dtype: int64
+Turkey                    859
+Other (please specify)     35
+Ham/Pork                   29
+Tofurkey                   20
+Chicken                    12
+Roast beef                 11
+I don&#39;t know                5
+Turducken                   3
+dtype: int64
+Yes    12
+No      8
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">apple</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Apple&quot;</span><span class="p">]</span>
+<span class="n">apple_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">apple</span><span class="p">)</span>
+<span class="n">pumpkin</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Pumpkin&quot;</span><span class="p">]</span>
+<span class="n">pumpkin_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">pumpkin</span><span class="p">)</span>
+<span class="n">pecan</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Pecan&quot;</span><span class="p">]</span>
+<span class="n">pecan_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">pecan</span><span class="p">)</span>
+<span class="n">ate_pies</span><span class="o">=</span><span class="n">apple_isnull</span> <span class="o">&amp;</span> <span class="n">pumpkin_isnull</span> <span class="o">&amp;</span> <span class="n">pecan_isnull</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;ate_pies&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">ate_pies</span>
+<span class="n">cat_ate_pies</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;ate_pies&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">cat_count</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cat_ate_pies</span><span class="p">:</span>
+    <span class="n">this_c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;ate_pies&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">cat_count</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">this_c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cat_count</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{False: 876, True: 182}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">return_int_agestring</span><span class="p">(</span><span class="n">age_string</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">age_string</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">age_string</span><span class="o">=</span><span class="n">age_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">age_string</span><span class="o">=</span><span class="n">age_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">age_string</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;thanksgiving.csv&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;Latin-1&quot;</span><span class="p">)</span>
+<span class="n">age_integer</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">return_int_agestring</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_age&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">age_integer</span>
+<span class="n">result_described</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_described</span><span class="p">)</span>
+<span class="c1">#print(data[&quot;Age&quot;].value_counts())</span>
+<span class="c1">#print(data[&quot;int_age&quot;].value_counts())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>count    1025.000000
+mean       39.383415
+std        15.398493
+min        18.000000
+25%        30.000000
+50%        45.000000
+75%        60.000000
+max        60.000000
+Name: int_age, dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">return_intincome</span><span class="p">(</span><span class="n">string_income</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">string_income</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">string_income</span><span class="o">=</span><span class="n">string_income</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">string_income</span><span class="o">==</span><span class="s1">&#39;Prefer&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">string_income</span><span class="o">=</span><span class="n">string_income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">string_income</span><span class="o">=</span><span class="n">string_income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">string_income</span><span class="p">)</span>
+
+<span class="n">earn_count</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;How much total combined money did all members of your HOUSEHOLD earn last year?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">earn_count</span><span class="p">)</span>
+<span class="n">income_integer</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;How much total combined money did all members of your HOUSEHOLD earn last year?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">return_intincome</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">income_integer</span>
+<span class="n">result_described</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_described</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>$25,000 to $49,999      180
+Prefer not to answer    136
+$50,000 to $74,999      135
+$75,000 to $99,999      133
+$100,000 to $124,999    111
+$200,000 and up          80
+$10,000 to $24,999       68
+$0 to $9,999             66
+$125,000 to $149,999     49
+$150,000 to $174,999     40
+$175,000 to $199,999     27
+dtype: int64
+count       889.000000
+mean      74077.615298
+std       59360.742902
+min           0.000000
+25%       25000.000000
+50%       50000.000000
+75%      100000.000000
+max      200000.000000
+Name: int_income, dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Findings</p>
+<p>Although we only have a rough approximation of income, and it skews downward because we took the first value in each string (the lower bound), the average income seems to be fairly high, although there is also a large standard deviation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_less_15</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">150000</span><span class="p">]</span>
+<span class="n">income</span><span class="o">=</span><span class="n">travel_less_15</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">how_far</span><span class="o">=</span><span class="n">travel_less_15</span><span class="p">[</span><span class="s2">&quot;How far will you travel for Thanksgiving?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">how_far</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Thanksgiving is happening at my home--I won&#39;t travel at all                         281
+Thanksgiving is local--it will take place in the town I live in                     203
+Thanksgiving is out of town but not too far--it&#39;s a drive of a few hours or less    150
+Thanksgiving is out of town and far away--I have to drive several hours or fly       55
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="INTERPRETATION">INTERPRETATION<a class="anchor-link" href="#INTERPRETATION">&#182;</a></h1><p>i can hypothesize that more number of people earning less stayed at home for their thanksgiving and only few travelled to their parents home for thanksgiving</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_greater_15</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">150000</span><span class="p">]</span>
+<span class="n">income</span><span class="o">=</span><span class="n">travel_greater_15</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">how_far_greater</span><span class="o">=</span><span class="n">travel_greater_15</span><span class="p">[</span><span class="s2">&quot;How far will you travel for Thanksgiving?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">how_far_greater</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Thanksgiving is happening at my home--I won&#39;t travel at all                         49
+Thanksgiving is local--it will take place in the town I live in                     25
+Thanksgiving is out of town but not too far--it&#39;s a drive of a few hours or less    16
+Thanksgiving is out of town and far away--I have to drive several hours or fly      12
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="INTERPRETATION">INTERPRETATION<a class="anchor-link" href="#INTERPRETATION">&#182;</a></h1><p>here the number of those who would travel for thanksgiving is one third of those staying at home for their thanksgiving</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;Have you ever tried to meet up with hometown friends on Thanksgiving night?&quot;</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Have you ever attended a &quot;Friendsgiving?&quot;&#39;</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="s2">&quot;int_age&quot;</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Have you ever attended a "Friendsgiving?"</th>
+      <th>No</th>
+      <th>Yes</th>
+    </tr>
+    <tr>
+      <th>Have you ever tried to meet up with hometown friends on Thanksgiving night?</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>No</th>
+      <td>42.283702</td>
+      <td>37.010526</td>
+    </tr>
+    <tr>
+      <th>Yes</th>
+      <td>41.475410</td>
+      <td>33.976744</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Have you ever attended a &quot;Friendsgiving?&quot;&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Have you ever tried to meet up with hometown friends on Thanksgiving night?&quot;</span><span class="p">,</span>
+                <span class="n">values</span><span class="o">=</span><span class="s2">&quot;int_income&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[24]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Have you ever tried to meet up with hometown friends on Thanksgiving night?</th>
+      <th>No</th>
+      <th>Yes</th>
+    </tr>
+    <tr>
+      <th>Have you ever attended a "Friendsgiving?"</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>No</th>
+      <td>78914.549654</td>
+      <td>78750.000000</td>
+    </tr>
+    <tr>
+      <th>Yes</th>
+      <td>72894.736842</td>
+      <td>66019.736842</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="figuring-out-most-common-dessert-people-eat,">figuring out most common dessert people eat,<a class="anchor-link" href="#figuring-out-most-common-dessert-people-eat,">&#182;</a></h1><p>do people eat one or more of:
+    Brownies
+    Peach cobbler
+    Fudge
+    Cookies
+    Apple cobbler
+    Blondies
+    Ice cream
+    Cheesecake
+    Carrot cake</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;thanks.csv&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;Latin-1&quot;</span><span class="p">)</span>
+<span class="n">Brownies_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Brownies&quot;</span><span class="p">])</span>
+<span class="n">Peach_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Peach cobbler&quot;</span><span class="p">])</span>
+<span class="n">Fudge_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Fudge&quot;</span><span class="p">])</span>
+<span class="n">Cookies_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Cookies&quot;</span><span class="p">])</span>
+<span class="n">Apple_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Apple cobbler&quot;</span><span class="p">])</span>
+<span class="n">Blondies_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Blondies&quot;</span><span class="p">])</span>
+<span class="n">Icecream_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Ice cream&quot;</span><span class="p">])</span>
+<span class="n">Cheesecake_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Cheesecake&quot;</span><span class="p">])</span>
+<span class="n">Carrotcake_isnull</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Carrot cake&quot;</span><span class="p">])</span>
+
+<span class="n">dessert_ate_by_all</span><span class="o">=</span><span class="n">Brownies_isnull</span> <span class="o">&amp;</span> <span class="n">Peach_isnull</span> <span class="o">&amp;</span> <span class="n">Fudge_isnull</span> <span class="o">&amp;</span> <span class="n">Cookies_isnull</span> <span class="o">&amp;</span> <span class="n">Apple_isnull</span> <span class="o">&amp;</span> <span class="n">Blondies_isnull</span> <span class="o">&amp;</span> <span class="n">Icecream_isnull</span> <span class="o">&amp;</span> <span class="n">Cheesecake_isnull</span> <span class="o">&amp;</span> <span class="n">Carrotcake_isnull</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;dessert_ate_by_all&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">dessert_ate_by_all</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;dessert_ate_by_all&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False    577
+True     481
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="from-above-we-can-deduce-that-577-people-would-eat-one-or-more-of-the-above-dessert-and-481-would-not-eat-any-of-the-above-dessert.">from above we can deduce that 577 people would eat one or more of the above dessert and 481 would not eat any of the above dessert.<a class="anchor-link" href="#from-above-we-can-deduce-that-577-people-would-eat-one-or-more-of-the-above-dessert-and-481-would-not-eat-any-of-the-above-dessert.">&#182;</a></h1><h1 id="we-can-say-here-that-if-we-would-recommend-dessert-during-thanksgiving-we-can-fairly-recommend-any-or-all-of-the-above-where-one-can-make-his-choice.">we can say here that if we would recommend dessert during thanksgiving we can fairly recommend any or all of the above where one can make his choice.<a class="anchor-link" href="#we-can-say-here-that-if-we-would-recommend-dessert-during-thanksgiving-we-can-fairly-recommend-any-or-all-of-the-above-where-one-can-make-his-choice.">&#182;</a></h1><h1 id="the-question-would-be:-what-desserts-should-we-recommend-during-subsequent-thanksgiving?">the question would be: what desserts should we recommend during subsequent thanksgiving?<a class="anchor-link" href="#the-question-would-be:-what-desserts-should-we-recommend-during-subsequent-thanksgiving?">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="k">import</span> <span class="n">Series</span>
+<span class="n">brownies</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Brownies&quot;</span><span class="p">][</span><span class="n">Brownies_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">peach</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Peach cobbler&quot;</span><span class="p">][</span><span class="n">Peach_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">fudge</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Fudge&quot;</span><span class="p">][</span><span class="n">Fudge_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">cookies</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Cookies&quot;</span><span class="p">][</span><span class="n">Cookies_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">apple</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Apple cobbler&quot;</span><span class="p">][</span><span class="n">Apple_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">blondies</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Blondies&quot;</span><span class="p">][</span><span class="n">Blondies_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">icecream</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Ice cream&quot;</span><span class="p">][</span><span class="n">Icecream_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">cheesecake</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Cheesecake&quot;</span><span class="p">][</span><span class="n">Cheesecake_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+<span class="n">carrot</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Which of these desserts do you typically have at Thanksgiving dinner? Please select all that apply.   - Carrot cake&quot;</span><span class="p">][</span><span class="n">Carrotcake_isnull</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Below are number of those who ate each of the dessert:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Brownies &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">brownies</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peach cobbler &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peach</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fudge &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fudge</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cookies &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cookies</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Apple cobbler &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">apple</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Blondies &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">blondies</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ice cream &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">icecream</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cheese cake &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cheesecake</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Carrot cake &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">carrot</span><span class="p">)))</span>
+
+<span class="n">desserts</span><span class="o">=</span><span class="n">Series</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">brownies</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">peach</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">fudge</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">cookies</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">apple</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">blondies</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">icecream</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">cheesecake</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">carrot</span><span class="p">)])</span>
+<span class="n">maximum_score</span><span class="o">=</span><span class="n">desserts</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Highest num is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum_score</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Below are number of those who ate each of the dessert:
+Brownies 128
+Peach cobbler 103
+Fudge 43
+Cookies 204
+Apple cobbler 110
+Blondies 16
+Ice cream 266
+Cheese cake 191
+Carrot cake 72
+Highest num is 266
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="most-common-dessert-from-the-above-analysis-is">most common dessert from the above analysis is<a class="anchor-link" href="#most-common-dessert-from-the-above-analysis-is">&#182;</a></h1><h1 id="Ice-cream">Ice cream<a class="anchor-link" href="#Ice-cream">&#182;</a></h1><h1 id="hence-we-can-recommend:-Ice-cream,-cookies,-cheese-cake-as-top-three-dessert-choice-of-people-during-thanksgiving.">hence we can recommend: Ice cream, cookies, cheese cake as top three dessert choice of people during thanksgiving.<a class="anchor-link" href="#hence-we-can-recommend:-Ice-cream,-cookies,-cheese-cake-as-top-three-dessert-choice-of-people-during-thanksgiving.">&#182;</a></h1><h1 id="although-some-people-that-went-for-one-type-of-dessert-also-are-likely-to-go-for-other-type-of-dessert">although some people that went for one type of dessert also are likely to go for other type of dessert<a class="anchor-link" href="#although-some-people-that-went-for-one-type-of-dessert-also-are-likely-to-go-for-other-type-of-dessert">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="the-most-common-dish-people-eat-can-be-gotten-as:">the most common dish people eat can be gotten as:<a class="anchor-link" href="#the-most-common-dish-people-eat-can-be-gotten-as:">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Turkey                    859
+Other (please specify)     35
+Ham/Pork                   29
+Tofurkey                   20
+Chicken                    12
+Roast beef                 11
+I don&#39;t know                5
+Turducken                   3
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hence Turkey is the most common dish at thanksgiving</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-many-people-work-on-thanksgiving">How many people work on thanksgiving<a class="anchor-link" href="#How-many-people-work-on-thanksgiving">&#182;</a></h1><p>to figure this out, it is dependent on the question</p>
+<h1 id="Will-you-employer-make-you-work-on-Black-Friday?">Will you employer make you work on Black Friday?<a class="anchor-link" href="#Will-you-employer-make-you-work-on-Black-Friday?">&#182;</a></h1><h1 id="Do-you-work-in-retail?">Do you work in retail?<a class="anchor-link" href="#Do-you-work-in-retail?">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Will you employer make you work on Black Friday?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Yes              43
+No               20
+Doesn&#39;t apply     7
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Do you work in retail?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[31]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>No     881
+Yes     70
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#figuring out people who would work on black friday and those that are retailers or not from then</span>
+<span class="n">data_new</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Will you employer make you work on Black Friday?&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Yes&quot;</span><span class="p">]</span>
+<span class="n">data_new</span><span class="p">[</span><span class="s2">&quot;Do you work in retail?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Yes    43
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="from-the-above,-we-can-analyse-that:">from the above, we can analyse that:<a class="anchor-link" href="#from-the-above,-we-can-analyse-that:">&#182;</a></h1><h1 id="all-employers-that-work-on-black-friday-are-retailers">all employers that work on black friday are retailers<a class="anchor-link" href="#all-employers-that-work-on-black-friday-are-retailers">&#182;</a></h1><h1 id="27-people-are-self-employed-working-as-a-retailer:-since-70-work-in-retail,-43-will-work-for-an-employer-on-black-friday,-and-all-43-do-work-in-retail.-Hence-the-remaining-(70-43)-27-who-work-in-retail-do-not-work-for-an-employer.">27 people are self employed working as a retailer: since 70 work in retail, 43 will work for an employer on black friday, and all 43 do work in retail. Hence the remaining (70-43) 27 who work in retail do not work for an employer.<a class="anchor-link" href="#27-people-are-self-employed-working-as-a-retailer:-since-70-work-in-retail,-43-will-work-for-an-employer-on-black-friday,-and-all-43-do-work-in-retail.-Hence-the-remaining-(70-43)-27-who-work-in-retail-do-not-work-for-an-employer.">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="finding-regional-patterns">finding regional patterns<a class="anchor-link" href="#finding-regional-patterns">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;US Region&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>South Atlantic        214
+Middle Atlantic       159
+East North Central    150
+Pacific               146
+West South Central     91
+West North Central     74
+East South Central     60
+New England            58
+Mountain               47
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#associating regional patterns in dinner menu</span>
+<span class="c1">#we try to find what kinds of food are eaten by a kind of regional pattern</span>
+<span class="c1">#this will help us know how to market the dish </span>
+
+<span class="k">def</span> <span class="nf">selectdish</span><span class="p">(</span><span class="n">region</span><span class="p">):</span>
+    <span class="n">dish_list</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;US Region&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">][</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Series</span><span class="p">(</span><span class="n">dish_list</span><span class="p">)</span>
+
+<span class="n">dishlist</span><span class="o">=</span><span class="n">selectdish</span><span class="p">(</span><span class="s2">&quot;South Atlantic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dishlist</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Turkey                    181
+Ham/Pork                    7
+Other (please specify)      6
+Roast beef                  3
+Tofurkey                    3
+Chicken                     3
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#from the above analysis we can say that Turkey is most eaten by south atlantic people</span>
+<span class="c1">#this will enhance our marketing and awareness of our brand of turkey during thanksgiving</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#import numpy as np</span>
+<span class="n">dishlist_middleatlantic</span><span class="o">=</span><span class="n">selectdish</span><span class="p">(</span><span class="s2">&quot;Middle Atlantic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dishlist_middleatlantic</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="c1">#data[&quot;int_income&quot;].value_counts()</span>
+<span class="c1">#data.pivot_table(index=&quot;What is typically the main dish at your Thanksgiving dinner?&quot;,values=&quot;int_income&quot;,aggfunc=np.sum)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Turkey                    130
+Tofurkey                    5
+Other (please specify)      4
+Roast beef                  2
+Ham/Pork                    2
+Turducken                   1
+Chicken                     1
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#from the above analysis we can say that Turkey is most eaten by Middle Atlantic people</span>
+<span class="c1">#this will enhance our marketing and awareness of our brand of turkey during thanksgiving.</span>
+<span class="c1">#giving from the most consumed dish type above being turkey, it will be obvious that the 9 regions will prefer</span>
+<span class="c1">#turkey to other type of dish</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="now-we-want-to-ask-this-question:">now we want to ask this question:<a class="anchor-link" href="#now-we-want-to-ask-this-question:">&#182;</a></h1><h1 id="why-do-people-go-more-for-turkey-than-the-other-kinds-of-dish">why do people go more for turkey than the other kinds of dish<a class="anchor-link" href="#why-do-people-go-more-for-turkey-than-the-other-kinds-of-dish">&#182;</a></h1><h1 id="could-it-be-because-of-income?">could it be because of income?<a class="anchor-link" href="#could-it-be-because-of-income?">&#182;</a></h1><h1 id="lets-relate-average-income-for-each-type-of-dish-then...">lets relate average income for each type of dish then...<a class="anchor-link" href="#lets-relate-average-income-for-each-type-of-dish-then...">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">return_intincome</span><span class="p">(</span><span class="n">string_income</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">string_income</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">string_income</span><span class="o">=</span><span class="n">string_income</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">string_income</span><span class="o">==</span><span class="s1">&#39;Prefer&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">string_income</span><span class="o">=</span><span class="n">string_income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">string_income</span><span class="o">=</span><span class="n">string_income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">string_income</span><span class="p">)</span>
+
+<span class="n">earn_count</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;How much total combined money did all members of your HOUSEHOLD earn last year?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="c1">#print(earn_count)</span>
+<span class="n">income_integer</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;How much total combined money did all members of your HOUSEHOLD earn last year?&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">return_intincome</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">income_integer</span>
+<span class="n">result_described</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;int_income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="c1">#print(result_described)</span>
+<span class="c1">#data[&quot;int_income&quot;].value_counts()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;What is typically the main dish at your Thanksgiving dinner?&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="s2">&quot;int_income&quot;</span><span class="p">,</span><span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[57]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>What is typically the main dish at your Thanksgiving dinner?
+Chicken                    40500.000000
+Ham/Pork                   65370.370370
+I don&#39;t know               16666.666667
+Other (please specify)     79193.548387
+Roast beef                 35625.000000
+Tofurkey                   73235.294118
+Turducken                 200000.000000
+Turkey                     77113.543092
+Name: int_income, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#from the above we can see that average income for those who eat Turducken is higher than those who eat Turkey</span>
+<span class="c1">#hence we musnt conclude that it is because of income, rather it might be choice or likeness for the food</span>
+<span class="c1">#though it is fine to hypothesize since Turkey is the next after Turducken...hence income could influence this as well</span>
+
+<span class="c1">#looking at it based on cost: Turducken might be more expensive than Turkey and </span>
+<span class="c1">#Turkey might be expensive than the other kinds of food, hence people went for dish their income could afford</span>
+
+<span class="c1">#acording to a source: http://www.wholefoodsmarket.com/blog/turducken-showstopping-holiday-roast</span>
+<span class="c1">#turducken is a combination of deboned turkey, deboned chicken and deboned duck stuffed into each other and spiced and then</span>
+<span class="c1">#cooked for about 5-7 hourse...who wouldnt say this might cost a lot, but it taste nice and your thanksgiving would still be talked</span>
+<span class="c1">#about even after days to come...</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
@@ -1196,6 +2203,45 @@ p8A/JtnP8Nsvfznn+UxNVe0HbmO4c/XD0c1/P78ZHZ8ktwPfB34tyYEkVwB/BfxekseB94+WT0pH
 </script>
                 </article>
             </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://sterlingking1990.github.io/first-post.html" rel="bookmark"
+                           title="Permalink to First Post">First Post</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-06-08T20:00:00+01:00">
+                Published: Wed 08 June 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://sterlingking1990.github.io/author/me.html">me</a>
+        </address>
+<p>In <a href="https://sterlingking1990.github.io/category/posts.html">posts</a>.</p>
+<p>tags: <a href="https://sterlingking1990.github.io/tag/python.html">python</a> </p>
+</footer><!-- /.post-info -->                
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="!-First-post!">! First post!<a class="anchor-link" href="#!-First-post!">&#182;</a></h1><p>This will be the first post in our new Pelican blog! You can add any code or markdown cells to this Jupyter notebook, and they will be rendered on your blog.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+                <a class="readmore" href="https://sterlingking1990.github.io/first-post.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
