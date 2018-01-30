@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>First Post</title>
+        <title>Izundu's Blog - fraud creditcard datascience logisticregression python</title>
         <link rel="stylesheet" href="https://sterlingking1990.github.io/theme/css/main.css" />
         <link href="https://sterlingking1990.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Izundu's Blog Atom Feed" />
 
@@ -16,29 +16,24 @@
                 <h1><a href="https://sterlingking1990.github.io/">Izundu's Blog </a></h1>
                 <nav><ul>
                     <li><a href="https://sterlingking1990.github.io/category/datascience.html">datascience</a></li>
-                    <li class="active"><a href="https://sterlingking1990.github.io/category/posts.html">posts</a></li>
+                    <li><a href="https://sterlingking1990.github.io/category/posts.html">posts</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="https://sterlingking1990.github.io/first-post.html" rel="bookmark"
-           title="Permalink to First Post">First Post</a></h1>
-    </header>
 
-    <div class="entry-content">
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://sterlingking1990.github.io/credit-card-fraud.html">Detecting Credit Card Fraud</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2016-06-08T20:00:00+01:00">
-                Published: Wed 08 June 2016
+        <abbr class="published" title="2018-01-30T04:20:00+01:00">
+                Published: Tue 30 January 2018
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://sterlingking1990.github.io/author/me.html">me</a>
+                By                         <a class="url fn" href="https://sterlingking1990.github.io/author/izundu-kingsley.html">Izundu Kingsley</a>
         </address>
-<p>In <a href="https://sterlingking1990.github.io/category/posts.html">posts</a>.</p>
-<p>tags: <a href="https://sterlingking1990.github.io/tag/python.html">python</a> </p>
-</footer><!-- /.post-info -->      <style type="text/css">/*!
+<p>In <a href="https://sterlingking1990.github.io/category/datascience.html">datascience</a>.</p>
+<p>tags: <a href="https://sterlingking1990.github.io/tag/fraud-creditcard-datascience-logisticregression-python.html">fraud creditcard datascience logisticregression python</a> </p>
+</footer><!-- /.post-info --><style type="text/css">/*!
 *
 * IPython notebook
 *
@@ -1014,19 +1009,32 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="!-First-post!">! First post!<a class="anchor-link" href="#!-First-post!">&#182;</a></h1><p>This will be the first post in our new Pelican blog! You can add any code or markdown cells to this Jupyter notebook, and they will be rendered on your blog.</p>
+<h1 id="CREDIT-CARD-FRAUD-ANALYSIS">CREDIT CARD FRAUD ANALYSIS<a class="anchor-link" href="#CREDIT-CARD-FRAUD-ANALYSIS">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>INTRODUCTION</p>
+<p>Credit card fraud according to PWC Global crime survey of 2016 suggest that approximately 36% of organizations 
+encounter credit card problem.</p>
+<p>The advent of technology in the research areas of machine learning, artificial intelligence etc has improved the 
+close observation of outliers or anomalies that are encountered during credit card authentication, saving cost as well as time involved during credit card fraud detection.</p>
+<p>here we use creditcard.csv data available at <a href="https://www.kaggle.com/dalpozz/creditcardfraud/downloads/creditcardfraud.zip">https://www.kaggle.com/dalpozz/creditcardfraud/downloads/creditcardfraud.zip</a></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">credit_card_dataframe</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;creditcard.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">credit_card_dataframe</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -1039,31 +1047,156 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[1]:</div>
+<div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                Time            V1            V2            V3            V4  \
+count  284807.000000  2.848070e+05  2.848070e+05  2.848070e+05  2.848070e+05   
+mean    94813.859575  3.919560e-15  5.688174e-16 -8.769071e-15  2.782312e-15   
+std     47488.145955  1.958696e+00  1.651309e+00  1.516255e+00  1.415869e+00   
+min         0.000000 -5.640751e+01 -7.271573e+01 -4.832559e+01 -5.683171e+00   
+25%     54201.500000 -9.203734e-01 -5.985499e-01 -8.903648e-01 -8.486401e-01   
+50%     84692.000000  1.810880e-02  6.548556e-02  1.798463e-01 -1.984653e-02   
+75%    139320.500000  1.315642e+00  8.037239e-01  1.027196e+00  7.433413e-01   
+max    172792.000000  2.454930e+00  2.205773e+01  9.382558e+00  1.687534e+01   
 
+                 V5            V6            V7            V8            V9  \
+count  2.848070e+05  2.848070e+05  2.848070e+05  2.848070e+05  2.848070e+05   
+mean  -1.552563e-15  2.010663e-15 -1.694249e-15 -1.927028e-16 -3.137024e-15   
+std    1.380247e+00  1.332271e+00  1.237094e+00  1.194353e+00  1.098632e+00   
+min   -1.137433e+02 -2.616051e+01 -4.355724e+01 -7.321672e+01 -1.343407e+01   
+25%   -6.915971e-01 -7.682956e-01 -5.540759e-01 -2.086297e-01 -6.430976e-01   
+50%   -5.433583e-02 -2.741871e-01  4.010308e-02  2.235804e-02 -5.142873e-02   
+75%    6.119264e-01  3.985649e-01  5.704361e-01  3.273459e-01  5.971390e-01   
+max    3.480167e+01  7.330163e+01  1.205895e+02  2.000721e+01  1.559499e+01   
 
-<div class="output_text output_subarea output_execute_result">
-<pre>96</pre>
+           ...                 V21           V22           V23           V24  \
+count      ...        2.848070e+05  2.848070e+05  2.848070e+05  2.848070e+05   
+mean       ...        1.537294e-16  7.959909e-16  5.367590e-16  4.458112e-15   
+std        ...        7.345240e-01  7.257016e-01  6.244603e-01  6.056471e-01   
+min        ...       -3.483038e+01 -1.093314e+01 -4.480774e+01 -2.836627e+00   
+25%        ...       -2.283949e-01 -5.423504e-01 -1.618463e-01 -3.545861e-01   
+50%        ...       -2.945017e-02  6.781943e-03 -1.119293e-02  4.097606e-02   
+75%        ...        1.863772e-01  5.285536e-01  1.476421e-01  4.395266e-01   
+max        ...        2.720284e+01  1.050309e+01  2.252841e+01  4.584549e+00   
+
+                V25           V26           V27           V28         Amount  \
+count  2.848070e+05  2.848070e+05  2.848070e+05  2.848070e+05  284807.000000   
+mean   1.453003e-15  1.699104e-15 -3.660161e-16 -1.206049e-16      88.349619   
+std    5.212781e-01  4.822270e-01  4.036325e-01  3.300833e-01     250.120109   
+min   -1.029540e+01 -2.604551e+00 -2.256568e+01 -1.543008e+01       0.000000   
+25%   -3.171451e-01 -3.269839e-01 -7.083953e-02 -5.295979e-02       5.600000   
+50%    1.659350e-02 -5.213911e-02  1.342146e-03  1.124383e-02      22.000000   
+75%    3.507156e-01  2.409522e-01  9.104512e-02  7.827995e-02      77.165000   
+max    7.519589e+00  3.517346e+00  3.161220e+01  3.384781e+01   25691.160000   
+
+               Class  
+count  284807.000000  
+mean        0.001727  
+std         0.041527  
+min         0.000000  
+25%         0.000000  
+50%         0.000000  
+75%         0.000000  
+max         1.000000  
+
+[8 rows x 31 columns]
+</pre>
+</div>
 </div>
 
 </div>
+</div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>from the above, we used the pandas describe method to summarize the creditcard data:
+here we have about 28 variables, the Amount and Class field as well
+for each Series in the dataframe, the mean, standard deviation, minimum value, maximum value as well as 25,50,75 percentile were computed using the describe method.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, we would try to normalize the all series in the data frame so that they range from 0 to 1; this is important while working with wide range of data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">StratifiedShuffleSplit</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">StratifiedShuffleSplit</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;creditcard.csv&#39;</span><span class="p">)</span>
+<span class="c1"># Only use the &#39;Amount&#39; and &#39;V1&#39;, ..., &#39;V28&#39; features</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;V</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">number</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">29</span><span class="p">)]</span>
 
-<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># The target variable which we would like to predict, is the &#39;Class&#39; variable</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;Class&#39;</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># Now create an X variable (containing the features) and an y variable (containing only the target variable)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make the distribution of the values of each variable similar by subtracting the mean and by dividing by the standard deviation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">-=</span> <span class="n">X</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">/=</span> <span class="n">X</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">X</span>
+
+<span class="c1"># Define the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># Define the splitter for splitting the data in a train set and a test set</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Loop through the splits (only one)</span>
+<span class="k">for</span> <span class="n">train_indices</span><span class="p">,</span> <span class="n">test_indices</span> <span class="ow">in</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1"># Select the train and test data</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_indices</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_indices</span><span class="p">]</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_indices</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+    
+    <span class="c1"># Normalize the data</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Fit and predict!</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># And finally: show the results</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1076,18 +1209,19 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
 
+          0       0.99      1.00      1.00      3296
+          1       0.95      0.79      0.87       126
 
-<div class="output_text output_subarea output_execute_result">
-<pre>(array([ 2.,  1.,  1.,  0.,  2.,  0.,  1.,  0.,  0.,  2.]),
- array([  1. ,   1.9,   2.8,   3.7,   4.6,   5.5,   6.4,   7.3,   8.2,
-          9.1,  10. ]),
- &lt;a list of 10 Patch objects&gt;)</pre>
+avg / total       0.99      0.99      0.99      3422
+
+</pre>
 </div>
-
 </div>
 
 <div class="output_area">
@@ -1095,79 +1229,33 @@ h6:hover .anchor-link {
 <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\Kingsley\Anaconda3\lib\site-packages\IPython\kernel\__main__.py:21: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
 
+See the the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+C:\Users\Kingsley\Anaconda3\lib\site-packages\IPython\kernel\__main__.py:22: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
 
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-+T9o7WVSweQ55gAAAABJRU5ErkJggg==
-">
+See the the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+</pre>
 </div>
-
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>from the result, we observe transaction without fraud ( the 0 mark) was predicted with 99% precision and 100% recall. transaction which are fraudulent was predicted with 95% precision, this means only 5% of these fraudulent transactions was not detected by the system. 95% is a good number anyway.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -1200,11 +1288,8 @@ p8A/JtnP8Nsvfznn+UxNVe0HbmO4c/XD0c1/P78ZHZ8ktwPfB34tyYEkVwB/BfxekseB94+WT0pH
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-
-    </div><!-- /.entry-content -->
-
-  </article>
-</section>
+                </article>
+            </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
